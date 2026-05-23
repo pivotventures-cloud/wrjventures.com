@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WRJ Ventures — Built after midnight.</title>
+  <meta name="description" content="WRJ Ventures builds consumer apps that solve small, real problems. Home of SparkDry, coming soon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midnight: #1A2744;
+      --midnight-deep: #111c33;
+      --sky: #B5D4F4;
+      --haze: #E6F1FB;
+      --ember: #FAC775;
+      --ember-dark: #412402;
+      --cloud: #F1EFE8;
+      --blue-mid: #378ADD;
+      --blue-muted: #85B7EB;
+      --blue-border: #0C447C;
+      --text-on-dark: #E6F1FB;
+      --text-muted-dark: #85B7EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cloud);
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--midnight);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--blue-border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+
+    .nav-logo-placeholder {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--sky);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--midnight);
+    }
+
+    .nav-name {
+      color: var(--text-on-dark);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-email {
+      color: var(--sky);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .nav-email:hover { color: var(--text-on-dark); }
+
+    /* HERO */
+    .hero {
+      background: var(--midnight);
+      padding: 80px 40px 72px;
+      text-align: center;
+      border-bottom: 1px solid var(--blue-border);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue-border);
+      color: var(--sky);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.07em;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      color: var(--text-on-dark);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: var(--blue-muted);
+      font-size: 17px;
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--ember);
+      color: var(--ember-dark);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .hero-cta:hover { opacity: 0.88; }
+
+    /* SECTIONS */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 40px;
+      border-bottom: 1px solid #d8d4cc;
+    }
+
+    .section-label {
+      font-size: 11px;
+      color: #888780;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .section p {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* APP CARD */
+    .app-card {
+      background: #fff;
+      border: 1px solid #d8d4cc;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 28px;
+    }
+
+    .app-badge {
+      display: inline-block;
+      background: var(--haze);
+      color: var(--blue-border);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .app-name {
+      font-size: 22px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+
+    .app-desc {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+
+    .app-platforms {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .platform {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .platform svg {
+      width: 15px;
+      height: 15px;
+      stroke: #aaa;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--midnight);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-top: 1px solid var(--blue-border);
+    }
+
+    footer span {
+      color: var(--blue-mid);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--sky);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text-on-dark); }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .fade-in:nth-child(2) { animation-delay: 0.1s; }
+    .fade-in:nth-child(3) { animation-delay: 0.2s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 56px 24px 48px; }
+      .section { padding: 40px 24px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+      .app-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">
+      <div class="nav-logo-placeholder">WRJ</div>
+      <span class="nav-name">WRJ Ventures</span>
+    </a>
+    <a class="nav-email" href="mailto:info@wrjventures.com">info@wrjventures.com</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge fade-in">Consumer apps</div>
+    <h1 class="fade-in">Built after midnight.</h1>
+    <p class="fade-in">WRJ Ventures builds consumer apps that solve small, real problems — the kind that bug you every day until someone finally fixes them.</p>
+    <a class="hero-cta" href="#building">See what we're building</a>
+  </section>
+
+  <div class="section">
+    <div class="section-label">About</div>
+    <p>WRJ Ventures is a one-person app studio run by a developer who builds things during the hours most people are asleep. No VC funding, no big team — just a focus on making apps that are useful, simple, and worth your time.</p>
+  </div>
+
+  <div class="section" id="building">
+    <div class="section-label">What we're building</div>
+    <div class="app-card">
+      <div class="app-badge">Coming soon</div>
+      <p class="app-name">SparkDry</p>
+      <p class="app-desc">Stop washing your car on days that ruin it. SparkDry tells you the best time to wash — based on weather, rain forecasts, and where you live — so your clean car actually stays clean.</p>
+      <div class="app-platforms">
+        <span class="platform">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.5" stroke-width="2"/></svg>
+          iOS
+        </span>
+        <span class="platform">
+          <svg viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 3L12 3l3.5 5L21 5l-2 11H5z"/></svg>
+          Android
+        </span>
+        <span class="platform">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 010 18M3 12h18"/></svg>
+          Web
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2025 WRJ Ventures LLC</span>
+    <a href="mailto:info@wrjventures.com">info@wrjventures.com</a>
+  </footer>
+
+</body>
+</html>

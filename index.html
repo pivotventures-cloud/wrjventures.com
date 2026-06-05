@@ -359,6 +359,24 @@
 
     .app-link:hover { text-decoration: underline; }
 
+    .app-card-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .app-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(26, 39, 68, 0.16);
+    }
+
+    .app-card-head .app-badge { margin-bottom: 8px; }
+    .app-card-head .app-name { margin-bottom: 0; }
+
     /* FOOTER */
     footer {
       background: var(--midnight);
@@ -478,8 +496,13 @@
   <div class="section scroll-fade" id="building">
     <div class="section-label">What we're building</div>
     <div class="app-card">
-      <div class="app-badge live">Live</div>
-      <p class="app-name">SparkDry</p>
+      <div class="app-card-head">
+        <img class="app-icon" src="sparkdry-icon.png" alt="SparkDry app icon" width="62" height="62" />
+        <div>
+          <div class="app-badge live">Live</div>
+          <p class="app-name">SparkDry</p>
+        </div>
+      </div>
       <p class="app-desc">Stop washing your car on days that ruin it. SparkDry tells you the best time to wash — based on weather, rain forecasts, and where you live — so your clean car actually stays clean.</p>
       <div class="store-badges">
         <a class="store-badge" href="https://apps.apple.com/app/id6770072955" target="_blank" rel="noopener">
@@ -495,8 +518,13 @@
     </div>
 
     <div class="app-card">
-      <div class="app-badge">Coming soon</div>
-      <p class="app-name">NeckTune</p>
+      <div class="app-card-head">
+        <img class="app-icon" src="necktune-icon.png" alt="NeckTune app icon" width="62" height="62" />
+        <div>
+          <div class="app-badge">Coming soon</div>
+          <p class="app-name">NeckTune</p>
+        </div>
+      </div>
       <p class="app-desc">A fast, accurate guitar tuner. Pluck a string and a clean needle meter guides you to perfect pitch — all six strings, acoustic or electric, in seconds.</p>
       <div class="app-platforms">
         <span class="platform">

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapPaint — Turn your photos into paint-by-number</title>
+  <meta name="description" content="SnapPaint turns your own photos — your dog, your kid, a vacation shot — into a color-by-number puzzle you fill in one tile at a time, right on your phone. Free on iOS and Android." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://wrjventures.com/snappaint/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=1" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=1" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wrjventures.com/snappaint/" />
+  <meta property="og:title" content="SnapPaint — Turn your photos into paint-by-number" />
+  <meta property="og:description" content="Pick a photo, and SnapPaint converts it into a color-by-number puzzle you fill in one tile at a time. Free on iOS and Android." />
+  <meta property="og:image" content="https://wrjventures.com/snappaint/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="SnapPaint" />
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SnapPaint — Turn your photos into paint-by-number" />
+  <meta name="twitter:description" content="Pick a photo, and SnapPaint converts it into a color-by-number puzzle you fill in one tile at a time. Free on iOS and Android." />
+  <meta name="twitter:image" content="https://wrjventures.com/snappaint/og.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SnapPaint",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "GameApplication",
+    "description": "Turn your own photos into color-by-number puzzles you fill in one tile at a time.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "WRJ Ventures LLC", "url": "https://wrjventures.com" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midnight: #1A2744;
+      --midnight-deep: #111c33;
+      --sky: #B5D4F4;
+      --haze: #E6F1FB;
+      --ember: #FAC775;
+      --ember-dark: #412402;
+      --cloud: #F1EFE8;
+      --blue-mid: #378ADD;
+      --blue-muted: #85B7EB;
+      --blue-border: #0C447C;
+      --text-on-dark: #E6F1FB;
+      --text-muted-dark: #85B7EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cloud);
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--midnight);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--blue-border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { width: 34px; height: 34px; border-radius: 9px; }
+    .nav-name { color: var(--text-on-dark); font-size: 15px; font-weight: 500; }
+    .nav-back { color: var(--sky); font-size: 13px; text-decoration: none; }
+    .nav-back:hover { color: var(--text-on-dark); }
+
+    /* HERO */
+    .hero {
+      background: var(--midnight);
+      padding: 72px 40px 64px;
+      text-align: center;
+      border-bottom: 1px solid var(--blue-border);
+      position: relative;
+      overflow: hidden;
+    }
+    #star-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue-border);
+      color: var(--sky);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.07em;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      color: var(--text-on-dark);
+      font-size: clamp(34px, 6vw, 54px);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 .accent { color: var(--ember); }
+    .hero-sub {
+      color: var(--blue-muted);
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto 34px;
+      line-height: 1.7;
+    }
+
+    /* DOWNLOAD BLOCK */
+    .dl { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .store-badges { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .store-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #000; color: #fff;
+      padding: 11px 20px; border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+    .store-badge:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.35); }
+    .store-badge svg { width: 24px; height: 24px; fill: #fff; flex-shrink: 0; }
+    .store-badge .sb-text { display: flex; flex-direction: column; line-height: 1.12; text-align: left; }
+    .store-badge .sb-small { font-size: 9px; letter-spacing: 0.04em; opacity: 0.85; text-transform: uppercase; }
+    .store-badge .sb-big { font-size: 16px; font-weight: 500; }
+    /* platform emphasis: the matched store glows ember, the other dims slightly */
+    .store-badge.primary { border-color: var(--ember); box-shadow: 0 0 0 2px rgba(250,199,117,0.35); }
+    .store-badge.secondary { opacity: 0.72; }
+
+    /* QR (desktop only) */
+    .qr-block { display: none; align-items: center; gap: 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(181,212,244,0.18); padding: 14px 18px; border-radius: 12px; }
+    .qr-block.show { display: inline-flex; }
+    .qr-block svg { width: 76px; height: 76px; background: #fff; padding: 6px; border-radius: 8px; }
+    .qr-block .qr-cap { text-align: left; color: var(--sky); font-size: 13px; max-width: 180px; line-height: 1.45; }
+
+    /* HERO SHOT */
+    .hero-shot { margin-top: 44px; }
+    .hero-shot img {
+      width: 260px; max-width: 72vw; height: auto;
+      border-radius: 22px;
+      box-shadow: 0 26px 60px rgba(0,0,0,0.5);
+      border: 1px solid rgba(181,212,244,0.14);
+    }
+
+    /* SECTIONS */
+    .section { max-width: 940px; margin: 0 auto; padding: 64px 40px; }
+    .section-label { font-size: 11px; color: #888780; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 12px; text-align: center; }
+    .section h2 { font-size: clamp(26px, 4vw, 34px); font-weight: 700; text-align: center; margin-bottom: 8px; letter-spacing: -0.01em; color: #1a1a1a; }
+    .section .lede { text-align: center; color: #555; font-size: 16px; max-width: 560px; margin: 0 auto 44px; }
+
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .step { text-align: center; }
+    .step-shot { position: relative; }
+    .step-shot img {
+      width: 100%; max-width: 240px; height: auto; border-radius: 20px;
+      box-shadow: 0 14px 34px rgba(26,39,68,0.20);
+      border: 1px solid #e2ddd2;
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--ember); color: var(--ember-dark);
+      font-weight: 700; font-size: 15px; margin: 22px 0 8px;
+    }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .step p { font-size: 14px; color: #666; max-width: 260px; margin: 0 auto; line-height: 1.6; }
+
+    /* WHY */
+    .why { background: #fff; border-top: 1px solid #e2ddd2; border-bottom: 1px solid #e2ddd2; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 8px; }
+    .why-card { background: var(--cloud); border: 1px solid #e2ddd2; border-radius: 14px; padding: 26px 24px; }
+    .why-card .ic { font-size: 26px; margin-bottom: 10px; display: block; }
+    .why-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .why-card p { font-size: 14px; color: #666; line-height: 1.65; }
+
+    /* CTA STRIP */
+    .cta-strip { background: var(--midnight); text-align: center; padding: 64px 40px; }
+    .cta-strip h2 { color: var(--text-on-dark); font-size: clamp(26px, 4vw, 34px); font-weight: 700; margin-bottom: 10px; }
+    .cta-strip p { color: var(--blue-muted); font-size: 16px; margin-bottom: 30px; }
+    .cta-strip .store-badges { margin-bottom: 8px; }
+    .cta-strip .price-note { color: var(--text-muted-dark); font-size: 13px; margin-top: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--midnight-deep);
+      padding: 26px 40px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      border-top: 1px solid var(--blue-border);
+    }
+    footer span { color: var(--blue-mid); font-size: 13px; }
+    footer .foot-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer a { color: var(--sky); font-size: 13px; text-decoration: none; }
+    footer a:hover { color: var(--text-on-dark); }
+
+    /* SCROLL FADE */
+    .scroll-fade { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .scroll-fade.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 780px) {
+      .steps, .why-grid { grid-template-columns: 1fr; gap: 36px; }
+      .why-grid { max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 52px 22px 48px; }
+      .section { padding: 48px 22px; }
+      .cta-strip { padding: 52px 22px; }
+      footer { padding: 22px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/snappaint/">
+      <img src="/snappaint-icon.png" alt="SnapPaint icon" width="34" height="34" />
+      <span class="nav-name">SnapPaint</span>
+    </a>
+    <a class="nav-back" href="https://wrjventures.com/">← WRJ Ventures</a>
+  </nav>
+
+  <section class="hero">
+    <canvas id="star-canvas"></canvas>
+    <div class="hero-badge">Paint by number · from your own photos</div>
+    <h1>Your photo becomes<br /><span class="accent">the puzzle.</span></h1>
+    <p class="hero-sub">Pick any picture — your dog, your kid, a vacation shot — and SnapPaint turns it into a color-by-number you fill in one tile at a time, right on your phone. Then watch your own photo develop.</p>
+
+    <div class="dl">
+      <div class="store-badges" id="storeBadges">
+        <a class="store-badge" data-os="ios" href="https://apps.apple.com/us/app/snappaint-color-your-photos/id6790002034" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.15-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13z"/></svg>
+          <span class="sb-text"><span class="sb-small">Download on the</span><span class="sb-big">App Store</span></span>
+        </a>
+        <a class="store-badge" data-os="android" href="https://play.google.com/store/apps/details?id=com.wrjventures.snappaint" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54z"/></svg>
+          <span class="sb-text"><span class="sb-small">Get it on</span><span class="sb-big">Google Play</span></span>
+        </a>
+      </div>
+
+      <div class="qr-block" id="qrBlock">
+        <!-- QR points at this page; scanning on a phone auto-routes to the right store -->
+        <svg viewBox="0 0 29 29" role="img" aria-label="QR code to open SnapPaint on your phone"><rect width="29" height="29" fill="#fff"/><path stroke="#1A2744" d="M0 0.5h7m1 0h3m1 0h1m2 0h6m1 0h7m-29 1h1m5 0h1m1 0h5m1 0h2m1 0h2m3 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h5m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h1m4 0h3m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m4 0h3m5 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h3m2 0h1m1 0h5m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h2m3 0h2m2 0h4m-21 1h1m1 0h2m1 0h3m2 0h2m1 0h2m1 0h4m2 0h1m2 0h1m1 0h2m-26 1h3m2 0h1m1 0h1m1 0h1m2 0h1m3 0h6m3 0h1m-29 1h1m2 0h2m1 0h7m1 0h1m1 0h1m3 0h2m1 0h2m1 0h2m-28 1h2m2 0h1m2 0h4m2 0h3m2 0h1m1 0h4m4 0h1m-25 1h7m1 0h1m4 0h1m1 0h1m3 0h1m1 0h2m-26 1h3m5 0h1m3 0h1m1 0h1m3 0h2m1 0h1m3 0h3m-29 1h8m1 0h1m2 0h1m1 0h1m1 0h6m2 0h1m1 0h3m-29 1h1m1 0h4m4 0h2m1 0h1m1 0h2m1 0h2m1 0h2m4 0h1m-28 1h1m4 0h2m1 0h1m1 0h2m4 0h1m1 0h1m2 0h1m1 0h3m1 0h1m-27 1h2m1 0h1m2 0h4m2 0h1m1 0h1m4 0h2m1 0h1m1 0h3m-28 1h1m1 0h1m2 0h4m2 0h2m2 0h1m2 0h1m1 0h1m5 0h1m-25 1h3m5 0h2m3 0h4m4 0h1m2 0h1m-26 1h1m1 0h1m1 0h2m2 0h1m3 0h1m1 0h12m-19 1h2m1 0h4m1 0h1m3 0h1m3 0h5m-29 1h7m1 0h3m2 0h1m2 0h2m1 0h2m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h2m2 0h1m3 0h1m3 0h1m3 0h2m-26 1h1m1 0h3m1 0h1m3 0h2m2 0h1m2 0h1m2 0h5m1 0h2m-28 1h1m1 0h3m1 0h1m1 0h2m3 0h6m2 0h1m2 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m4 0h1m1 0h1m1 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m3 0h4m1 0h1m2 0h3m2 0h1m1 0h1m1 0h1m-28 1h7m1 0h4m6 0h4m3 0h1m1 0h1"/></svg>
+        <span class="qr-cap">Scan to get SnapPaint on your phone — free.</span>
+      </div>
+    </div>
+
+    <div class="hero-shot">
+      <img src="shots/phone-04-reveal.png" alt="SnapPaint showing a photo of a boy converted to a paint-by-number, before and after" width="260" height="520" loading="eager" />
+    </div>
+  </section>
+
+  <div class="section scroll-fade">
+    <div class="section-label">How it works</div>
+    <h2>Three taps to your own puzzle</h2>
+    <p class="lede">No stock pictures, no accounts, nothing uploaded. Everything happens on your phone — your photos never leave it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-shot"><img src="shots/phone-02-setup.png" alt="Choosing a photo and difficulty in SnapPaint" width="240" height="480" loading="lazy" /></div>
+        <div class="step-num">1</div>
+        <h3>Pick a photo</h3>
+        <p>Choose any picture from your library and a difficulty — Quick, Balanced, or Detailed.</p>
+      </div>
+      <div class="step">
+        <div class="step-shot"><img src="shots/phone-03-paint.png" alt="Filling in numbered regions of a paint-by-number in SnapPaint" width="240" height="480" loading="lazy" /></div>
+        <div class="step-num">2</div>
+        <h3>Fill it in</h3>
+        <p>Tap the numbered tiles to drop in each color. Zoom in for the fine details.</p>
+      </div>
+      <div class="step">
+        <div class="step-shot"><img src="shots/phone-04-reveal.png" alt="The finished painting revealed next to the original photo" width="240" height="480" loading="lazy" /></div>
+        <div class="step-num">3</div>
+        <h3>Watch it develop</h3>
+        <p>Your photo comes back to life tile by tile — then share the before &amp; after.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="why scroll-fade">
+    <div class="section">
+      <div class="section-label">Why SnapPaint</div>
+      <h2>Not another stock color-by-number</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="ic">📸</span>
+          <h3>Your own photos</h3>
+          <p>The puzzle is <em>your</em> dog, <em>your</em> kid, <em>your</em> trip — not a generic template everyone else is coloring.</p>
+        </div>
+        <div class="why-card">
+          <span class="ic">🔒</span>
+          <h3>Private by design</h3>
+          <p>Conversion runs entirely on your device. Nothing is uploaded and no account is required.</p>
+        </div>
+        <div class="why-card">
+          <span class="ic">🎚️</span>
+          <h3>As easy or detailed as you like</h3>
+          <p>Quick, Balanced, and Detailed modes set how many colors and regions — from a few minutes to a long, relaxing session.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-strip scroll-fade">
+    <h2>Turn a photo into a painting tonight</h2>
+    <p>Free to download. Your first puzzles are on the house.</p>
+    <div class="store-badges" id="storeBadges2">
+      <a class="store-badge" data-os="ios" href="https://apps.apple.com/us/app/snappaint-color-your-photos/id6790002034" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.15-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13z"/></svg>
+        <span class="sb-text"><span class="sb-small">Download on the</span><span class="sb-big">App Store</span></span>
+      </a>
+      <a class="store-badge" data-os="android" href="https://play.google.com/store/apps/details?id=com.wrjventures.snappaint" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54z"/></svg>
+        <span class="sb-text"><span class="sb-small">Get it on</span><span class="sb-big">Google Play</span></span>
+      </a>
+    </div>
+    <p class="price-note">iPhone &amp; iPad · Android phones &amp; tablets</p>
+  </section>
+
+  <footer>
+    <span>© 2026 WRJ Ventures LLC</span>
+    <div class="foot-links">
+      <a href="/snappaint/support.html">Support</a>
+      <a href="/snappaint/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="https://wrjventures.com/">WRJ Ventures</a>
+    </div>
+  </footer>
+
+  <script>
+    // Platform-aware store emphasis + desktop QR
+    (function () {
+      var ua = navigator.userAgent || '';
+      var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var isAndroid = /Android/.test(ua);
+      var os = isIOS ? 'ios' : (isAndroid ? 'android' : 'desktop');
+
+      document.querySelectorAll('.store-badges').forEach(function (group) {
+        if (os === 'desktop') return; // desktop: leave both equal
+        group.querySelectorAll('.store-badge').forEach(function (b) {
+          b.classList.add(b.dataset.os === os ? 'primary' : 'secondary');
+        });
+        // put the matching store first
+        var match = group.querySelector('.store-badge[data-os="' + os + '"]');
+        if (match) group.insertBefore(match, group.firstChild);
+      });
+
+      if (os === 'desktop') {
+        var qr = document.getElementById('qrBlock');
+        if (qr) qr.classList.add('show');
+      }
+    })();
+
+    // Scroll fade-in
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.scroll-fade').forEach(function (el) { observer.observe(el); });
+
+    // Starfield in hero
+    var canvas = document.getElementById('star-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.parentElement;
+    function resize() { canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    var stars = Array.from({ length: 70 }, function () {
+      return { x: Math.random(), y: Math.random(), r: Math.random() * 1.2 + 0.3, speed: Math.random() * 0.003 + 0.001, phase: Math.random() * Math.PI * 2 };
+    });
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(function (s) {
+        var a = 0.3 + 0.5 * Math.abs(Math.sin(t * s.speed + s.phase));
+        ctx.beginPath();
+        ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(181, 212, 244, ' + a + ')';
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>

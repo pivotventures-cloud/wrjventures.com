@@ -2,6 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    // Paid-ad bridge (Meta iOS ad set, Nov 2026): Meta's Traffic objective won't accept an
+    // apps.apple.com link, so iOS ads point here with ?src=meta_ios and we forward straight
+    // to the App Store before anything renders. Only iPhone/iPad + that exact param; every
+    // other visitor sees the normal page. Remove once the iOS App Promotion campaign
+    // (post-1.1.7, SKAdNetwork IDs) replaces this ad set.
+    (function () {
+      var IOS_STORE_URL = 'https://apps.apple.com/us/app/snappaint-color-your-photos/id6790002034';
+      try {
+        var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIOS && new URLSearchParams(location.search).get('src') === 'meta_ios') {
+          location.replace(IOS_STORE_URL);
+        }
+      } catch (e) { /* fall through to the normal page */ }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SnapPaint — Turn your photos into paint-by-number</title>
   <meta name="description" content="SnapPaint turns your own photos — your dog, your kid, a vacation shot — into a color-by-number puzzle you fill in one tile at a time, right on your phone. Free on iOS and Android." />

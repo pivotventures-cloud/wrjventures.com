@@ -22,8 +22,8 @@
     }
     gtag('config', 'G-ZG3ZSY4N5Y', gaCfg);
   </script>
-  <title>SnapPaint — Turn your photos into paint-by-number</title>
-  <meta name="description" content="SnapPaint turns your own photos — your dog, your kid, a vacation shot — into a color-by-number puzzle you fill in one tile at a time, right on your phone. Free on iOS and Android." />
+  <title>SnapPaint: Turn Any Photo Into a Paint by Number (Free App)</title>
+  <meta name="description" content="Turn any photo into a paint by number on your phone. SnapPaint is a free custom paint-by-number app for iPhone, iPad and Android. Your photos never leave your device." />
   <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://wrjventures.com/snappaint/" />
@@ -36,7 +36,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wrjventures.com/snappaint/" />
-  <meta property="og:title" content="SnapPaint — Turn your photos into paint-by-number" />
+  <meta property="og:title" content="SnapPaint: Turn any photo into a paint by number" />
   <meta property="og:description" content="Pick a photo, and SnapPaint converts it into a color-by-number puzzle you fill in one tile at a time. Free on iOS and Android." />
   <meta property="og:image" content="https://wrjventures.com/snappaint/og.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,22 +45,92 @@
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SnapPaint — Turn your photos into paint-by-number" />
+  <meta name="twitter:title" content="SnapPaint: Turn any photo into a paint by number" />
   <meta name="twitter:description" content="Pick a photo, and SnapPaint converts it into a color-by-number puzzle you fill in one tile at a time. Free on iOS and Android." />
   <meta name="twitter:image" content="https://wrjventures.com/snappaint/og.png" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SnapPaint",
-    "operatingSystem": "iOS, Android",
-    "applicationCategory": "GameApplication",
-    "description": "Turn your own photos into color-by-number puzzles you fill in one tile at a time.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "publisher": { "@type": "Organization", "name": "WRJ Ventures LLC", "url": "https://wrjventures.com" }
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "SnapPaint",
+  "url": "https://wrjventures.com/snappaint/",
+  "image": "https://wrjventures.com/snappaint/og.png",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "GameApplication",
+  "description": "Turn any photo into a paint by number puzzle and color it in on your phone. Conversion runs on your device.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "sameAs": [
+    "https://apps.apple.com/us/app/snappaint-color-your-photos/id6790002034",
+    "https://play.google.com/store/apps/details?id=com.wrjventures.snappaint"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "WRJ Ventures LLC",
+    "url": "https://wrjventures.com"
   }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I turn a photo into a paint by number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Install SnapPaint, tap to pick any photo from your library, and choose a difficulty: Quick & Easy, Balanced, or Detailed. SnapPaint converts the photo into numbered regions with a matching color palette in a few seconds, and you tap each region to fill in its color."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is SnapPaint free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. SnapPaint is free to download, and you can make 3 new puzzles from your photos every week for free. Continuing a puzzle you've started is always free. A one-time purchase unlocks unlimited puzzles, or you can watch an optional ad for one extra puzzle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my photos uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The conversion from photo to paint by number runs entirely on your phone or tablet. Your photos are never uploaded, and no account is needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What photos work best?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Photos with a clear subject and good light work best: pets, portraits, kids, and vacation or landscape shots. Pick Quick & Easy for a short, simple puzzle or Detailed for more colors and finer regions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is SnapPaint a paint by number generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and a game too. Instead of printing a template, SnapPaint generates a custom paint by number from your photo and lets you color it in right on your screen, then shows your painting next to the original photo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on iPhone, iPad and Android?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. SnapPaint is available on the App Store for iPhone and iPad, and on Google Play for Android phones and tablets."
+      }
+    }
+  ]
+}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -220,6 +290,13 @@
     .why-card p { font-size: 14px; color: #666; line-height: 1.65; }
 
     /* CTA STRIP */
+    .faq { max-width: 720px; margin: 0 auto; }
+    .faq details { background: #fff; border: 1px solid #e2ddd2; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; }
+    .faq summary { font-weight: 700; font-size: 16px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: #888780; font-weight: 400; }
+    .faq details[open] summary::after { content: "–"; }
+    .faq details p { margin-top: 10px; font-size: 15px; color: #555; line-height: 1.65; }
     .cta-strip { background: var(--midnight); text-align: center; padding: 64px 40px; }
     .cta-strip h2 { color: var(--text-on-dark); font-size: clamp(26px, 4vw, 34px); font-weight: 700; margin-bottom: 10px; }
     .cta-strip p { color: var(--blue-muted); font-size: 16px; margin-bottom: 30px; }
@@ -268,7 +345,7 @@
   <section class="hero">
     <canvas id="star-canvas"></canvas>
     <div class="hero-badge">Paint by number · from your own photos</div>
-    <h1>Your photo becomes<br /><span class="accent">the puzzle.</span></h1>
+    <h1>Turn any photo into a<br /><span class="accent">paint by number.</span></h1>
     <p class="hero-sub">Pick any picture — your dog, your kid, a vacation shot — and SnapPaint turns it into a color-by-number you fill in one tile at a time, right on your phone. Then watch your own photo develop.</p>
 
     <div class="dl">
@@ -291,7 +368,7 @@
     </div>
 
     <div class="hero-shot">
-      <img src="shots/phone-04-reveal.png" alt="SnapPaint showing a photo of a boy converted to a paint-by-number, before and after" width="260" height="520" loading="eager" />
+      <img src="shots/phone-04-reveal.png" alt="A photo of a boy turned into a paint by number in the SnapPaint app, before and after" width="260" height="520" loading="eager" />
     </div>
   </section>
 
@@ -301,13 +378,13 @@
     <p class="lede">No stock pictures, no accounts, nothing uploaded. Everything happens on your phone — your photos never leave it.</p>
     <div class="steps">
       <div class="step">
-        <div class="step-shot"><img src="shots/phone-02-setup.png" alt="Choosing a photo and difficulty in SnapPaint" width="240" height="480" loading="lazy" /></div>
+        <div class="step-shot"><img src="shots/phone-02-setup.png" alt="Choosing a photo to turn into a paint by number in SnapPaint" width="240" height="480" loading="lazy" /></div>
         <div class="step-num">1</div>
         <h3>Pick a photo</h3>
-        <p>Choose any picture from your library and a difficulty — Quick, Balanced, or Detailed.</p>
+        <p>Choose any picture from your library and a difficulty — Quick &amp; Easy, Balanced, or Detailed.</p>
       </div>
       <div class="step">
-        <div class="step-shot"><img src="shots/phone-03-paint.png" alt="Filling in numbered regions of a paint-by-number in SnapPaint" width="240" height="480" loading="lazy" /></div>
+        <div class="step-shot"><img src="shots/phone-03-paint.png" alt="Coloring the numbered regions of a custom paint by number in SnapPaint" width="240" height="480" loading="lazy" /></div>
         <div class="step-num">2</div>
         <h3>Fill it in</h3>
         <p>Tap the numbered tiles to drop in each color. Zoom in for the fine details.</p>
@@ -339,9 +416,22 @@
         <div class="why-card">
           <span class="ic">🎚️</span>
           <h3>As easy or detailed as you like</h3>
-          <p>Quick, Balanced, and Detailed modes set how many colors and regions — from a few minutes to a long, relaxing session.</p>
+          <p>Quick &amp; Easy, Balanced, and Detailed modes set how many colors and regions — from a few minutes to a long, relaxing session.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="section scroll-fade">
+    <div class="section-label">FAQ</div>
+    <h2>Paint by number from your photos: questions</h2>
+    <div class="faq">
+      <details><summary>How do I turn a photo into a paint by number?</summary><p>Install SnapPaint, tap to pick any photo from your library, and choose a difficulty: Quick &amp; Easy, Balanced, or Detailed. SnapPaint converts the photo into numbered regions with a matching color palette in a few seconds, and you tap each region to fill in its color.</p></details>
+      <details><summary>Is SnapPaint free?</summary><p>Yes. SnapPaint is free to download, and you can make 3 new puzzles from your photos every week for free. Continuing a puzzle you&#x27;ve started is always free. A one-time purchase unlocks unlimited puzzles, or you can watch an optional ad for one extra puzzle.</p></details>
+      <details><summary>Are my photos uploaded anywhere?</summary><p>No. The conversion from photo to paint by number runs entirely on your phone or tablet. Your photos are never uploaded, and no account is needed.</p></details>
+      <details><summary>What photos work best?</summary><p>Photos with a clear subject and good light work best: pets, portraits, kids, and vacation or landscape shots. Pick Quick &amp; Easy for a short, simple puzzle or Detailed for more colors and finer regions.</p></details>
+      <details><summary>Is SnapPaint a paint by number generator?</summary><p>Yes, and a game too. Instead of printing a template, SnapPaint generates a custom paint by number from your photo and lets you color it in right on your screen, then shows your painting next to the original photo.</p></details>
+      <details><summary>Does it work on iPhone, iPad and Android?</summary><p>Yes. SnapPaint is available on the App Store for iPhone and iPad, and on Google Play for Android phones and tablets.</p></details>
     </div>
   </div>
 

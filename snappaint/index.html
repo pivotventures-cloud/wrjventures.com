@@ -353,6 +353,21 @@
   </footer>
 
   <script>
+    // Source attribution: carry ?src= (or ?utm_source=) into the store links so each
+    // store's own analytics credits the channel. No cookies, no third-party script.
+    //   App Store -> ASC Analytics > Acquisition > Campaigns (ct=; shows once >=5 accounts install)
+    //   Play      -> Play Console > Store listing acquisition, UTM-tagged (referrer=)
+    // Untagged visits are tagged "website" so they still separate from store search.
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var src = (q.get('src') || q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || 'website';
+      var ios = 'https://apps.apple.com/app/apple-store/id6790002034?pt=128914542&ct=' + src + '&mt=8';
+      var play = 'https://play.google.com/store/apps/details?id=com.wrjventures.snappaint&referrer=' +
+        encodeURIComponent('utm_source=' + src + '&utm_medium=landing_page&utm_campaign=' + src);
+      document.querySelectorAll('.store-badge[data-os="ios"]').forEach(function (a) { a.href = ios; });
+      document.querySelectorAll('.store-badge[data-os="android"]').forEach(function (a) { a.href = play; });
+    })();
+
     // Platform-aware store emphasis + desktop QR
     (function () {
       var ua = navigator.userAgent || '';

@@ -3,6 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Analytics 4 (G-ZG3ZSY4N5Y): website only, never the apps. No ad features.
+       EEA/UK/CH default to analytics consent DENIED (no cookies there; we have no banner). -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZG3ZSY4N5Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+    gtag('consent', 'default', { analytics_storage: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    // GA4 reads utm_* from the URL; map our short ?src=<tag> onto utm_source so channels line up.
+    var gaCfg = { allow_google_signals: false, allow_ad_personalization_signals: false };
+    var gaQ = new URLSearchParams(location.search), gaSrc = gaQ.get('src');
+    if (gaSrc && !gaQ.get('utm_source')) {
+      gaQ.set('utm_source', gaSrc); gaQ.set('utm_medium', 'social'); gaQ.set('utm_campaign', gaSrc);
+      gaCfg.page_location = location.origin + location.pathname + '?' + gaQ.toString();
+    }
+    gtag('config', 'G-ZG3ZSY4N5Y', gaCfg);
+  </script>
   <title>WRJ Ventures — Built after midnight.</title>
   <meta name="description" content="WRJ Ventures builds consumer apps that solve small, real problems — SparkDry, NeckTune, and SnapPaint are live, with WhatDidIDraw coming soon." />
   <meta name="robots" content="index, follow" />

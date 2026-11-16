@@ -462,6 +462,19 @@
   </footer>
 
   <script>
+    // GA4 key event: one `store_click` per store-button tap (marked as a key event in GA).
+    // platform = ios | android; placement = hero | bottom. Beacon transport survives the new tab.
+    document.querySelectorAll('.store-badge').forEach(function (a) {
+      a.addEventListener('click', function () {
+        if (typeof gtag !== 'function') return;
+        gtag('event', 'store_click', {
+          platform: a.dataset.os,
+          placement: a.closest('.hero') ? 'hero' : 'bottom',
+          transport_type: 'beacon'
+        });
+      });
+    });
+
     // Source attribution: carry ?src= (or ?utm_source=) into the store links so each
     // store's own analytics credits the channel. No cookies, no third-party script.
     //   App Store -> ASC Analytics > Acquisition > Campaigns (ct=; shows once >=5 accounts install)

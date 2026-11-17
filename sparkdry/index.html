@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Analytics 4 (G-ZG3ZSY4N5Y): website only, never the apps. No ad features.
+       EEA/UK/CH default to analytics consent DENIED (no cookies there; we have no banner). -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZG3ZSY4N5Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+    gtag('consent', 'default', { analytics_storage: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    // GA4 reads utm_* from the URL; map our short ?src=<tag> onto utm_source so channels line up.
+    var gaCfg = { allow_google_signals: false, allow_ad_personalization_signals: false };
+    var gaQ = new URLSearchParams(location.search), gaSrc = gaQ.get('src');
+    if (gaSrc && !gaQ.get('utm_source')) {
+      gaQ.set('utm_source', gaSrc); gaQ.set('utm_medium', 'social'); gaQ.set('utm_campaign', gaSrc);
+      gaCfg.page_location = location.origin + location.pathname + '?' + gaQ.toString();
+    }
+    gtag('config', 'G-ZG3ZSY4N5Y', gaCfg);
+  </script>
+  <title>SparkDry: When to Wash Your Car (Free Car Wash Weather App)</title>
+  <meta name="description" content="Know the best day to wash your car. SparkDry checks your local rain, pollen and dust forecast and tells you when to wash and when to skip it. Free on iPhone and Android." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://wrjventures.com/sparkdry/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=1" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=1" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wrjventures.com/sparkdry/" />
+  <meta property="og:title" content="SparkDry: know the best day to wash your car" />
+  <meta property="og:description" content="Don't wash your car right before it rains. SparkDry turns your local forecast into one Wash Score. Free on iPhone and Android." />
+  <meta property="og:image" content="https://wrjventures.com/sparkdry/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="SparkDry" />
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SparkDry: know the best day to wash your car" />
+  <meta name="twitter:description" content="Don't wash your car right before it rains. SparkDry turns your local forecast into one Wash Score. Free on iPhone and Android." />
+  <meta name="twitter:image" content="https://wrjventures.com/sparkdry/og.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "SparkDry",
+  "url": "https://wrjventures.com/sparkdry/",
+  "image": "https://wrjventures.com/sparkdry/og.png",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "WeatherApplication",
+  "description": "Car wash weather app: a Wash Score from your local rain, pollen and dust forecast tells you the best day to wash your car.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "sameAs": [
+    "https://apps.apple.com/app/id6770072955",
+    "https://play.google.com/store/apps/details?id=com.wrjventures.sparkdry",
+    "https://sparkdryapp.com/"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "WRJ Ventures LLC",
+    "url": "https://wrjventures.com"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is the best time to wash my car?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wash on a dry, mild day when no rain is expected for the next couple of days, and when pollen and dust are low. SparkDry checks your local forecast and turns it into one Wash Score from 0 to 100, so you can see at a glance whether today is a good day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I wash my car if it's going to rain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not. Rain right after a wash leaves water spots and road grime, so the wash is wasted. If rain is likely today or tomorrow, SparkDry tells you to skip the wash and shows when the rain is expected to clear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the SparkDry Wash Score work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SparkDry reads your local forecast (rain probability and amount over the coming days) plus air quality like pollen and dust, and combines them into a single score. Higher is better. It also counts your dry streak: how many dry days are ahead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is SparkDry free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Today's Wash Score, the dry streak, nearby car washes and push alerts are free, with no account needed. An optional Pro upgrade ($1.99/month or $9.99/year) adds the full 7-day forecast, a custom alert threshold and an ad-free experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can SparkDry find a car wash near me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Car Washes tab lists real car washes near you with ratings, distance, opening hours and one-tap directions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on iPhone, iPad and Android?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. SparkDry is on the App Store for iPhone and iPad, and on Google Play for Android."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midnight: #1A2744;
+      --midnight-deep: #111c33;
+      --sky: #B5D4F4;
+      --haze: #E6F1FB;
+      --ember: #FAC775;
+      --ember-dark: #412402;
+      --cloud: #F1EFE8;
+      --blue-mid: #378ADD;
+      --blue-muted: #85B7EB;
+      --blue-border: #0C447C;
+      --text-on-dark: #E6F1FB;
+      --text-muted-dark: #85B7EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cloud);
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--midnight);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--blue-border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { width: 34px; height: 34px; border-radius: 9px; }
+    .nav-name { color: var(--text-on-dark); font-size: 15px; font-weight: 500; }
+    .nav-back { color: var(--sky); font-size: 13px; text-decoration: none; }
+    .nav-back:hover { color: var(--text-on-dark); }
+
+    /* HERO */
+    .hero {
+      background: var(--midnight);
+      padding: 72px 40px 64px;
+      text-align: center;
+      border-bottom: 1px solid var(--blue-border);
+      position: relative;
+      overflow: hidden;
+    }
+    #star-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--blue-border);
+      color: var(--sky);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.07em;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      color: var(--text-on-dark);
+      font-size: clamp(34px, 6vw, 54px);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 .accent { color: var(--ember); }
+    .hero-sub {
+      color: var(--blue-muted);
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto 34px;
+      line-height: 1.7;
+    }
+
+    /* DOWNLOAD BLOCK */
+    .dl { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .store-badges { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .store-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #000; color: #fff;
+      padding: 11px 20px; border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+    .store-badge:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.35); }
+    .store-badge svg { width: 24px; height: 24px; fill: #fff; flex-shrink: 0; }
+    .store-badge .sb-text { display: flex; flex-direction: column; line-height: 1.12; text-align: left; }
+    .store-badge .sb-small { font-size: 9px; letter-spacing: 0.04em; opacity: 0.85; text-transform: uppercase; }
+    .store-badge .sb-big { font-size: 16px; font-weight: 500; }
+    /* platform emphasis: the matched store glows ember, the other dims slightly */
+    .store-badge.primary { border-color: var(--ember); box-shadow: 0 0 0 2px rgba(250,199,117,0.35); }
+    .store-badge.secondary { opacity: 0.72; }
+
+    /* QR (desktop only) */
+    .qr-block { display: none; align-items: center; gap: 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(181,212,244,0.18); padding: 14px 18px; border-radius: 12px; }
+    .qr-block.show { display: inline-flex; }
+    .qr-block svg { width: 76px; height: 76px; background: #fff; padding: 6px; border-radius: 8px; }
+    .qr-block .qr-cap { text-align: left; color: var(--sky); font-size: 13px; max-width: 180px; line-height: 1.45; }
+
+    /* HERO SHOT */
+    .hero-shot { margin-top: 44px; }
+    .hero-shot img {
+      width: 260px; max-width: 72vw; height: auto;
+      border-radius: 22px;
+      box-shadow: 0 26px 60px rgba(0,0,0,0.5);
+      border: 1px solid rgba(181,212,244,0.14);
+    }
+
+    /* SECTIONS */
+    .section { max-width: 940px; margin: 0 auto; padding: 64px 40px; }
+    .section-label { font-size: 11px; color: #888780; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 12px; text-align: center; }
+    .section h2 { font-size: clamp(26px, 4vw, 34px); font-weight: 700; text-align: center; margin-bottom: 8px; letter-spacing: -0.01em; color: #1a1a1a; }
+    .section .lede { text-align: center; color: #555; font-size: 16px; max-width: 560px; margin: 0 auto 44px; }
+
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .step { text-align: center; }
+    .step-shot { position: relative; }
+    .step-shot img {
+      width: 100%; max-width: 240px; height: auto; border-radius: 20px;
+      box-shadow: 0 14px 34px rgba(26,39,68,0.20);
+      border: 1px solid #e2ddd2;
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--ember); color: var(--ember-dark);
+      font-weight: 700; font-size: 15px; margin: 22px 0 8px;
+    }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .step p { font-size: 14px; color: #666; max-width: 260px; margin: 0 auto; line-height: 1.6; }
+
+    /* WHY */
+    .why { background: #fff; border-top: 1px solid #e2ddd2; border-bottom: 1px solid #e2ddd2; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 8px; }
+    .why-card { background: var(--cloud); border: 1px solid #e2ddd2; border-radius: 14px; padding: 26px 24px; }
+    .why-card .ic { font-size: 26px; margin-bottom: 10px; display: block; }
+    .why-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .why-card p { font-size: 14px; color: #666; line-height: 1.65; }
+
+    /* CTA STRIP */
+    .faq { max-width: 720px; margin: 0 auto; }
+    .faq details { background: #fff; border: 1px solid #e2ddd2; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; }
+    .faq summary { font-weight: 700; font-size: 16px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: #888780; font-weight: 400; }
+    .faq details[open] summary::after { content: "–"; }
+    .site-note { color: var(--text-muted-dark); font-size: 12px; line-height: 1.6; max-width: 640px; flex-basis: 100%; }
+    .site-note a { font-size: 12px; text-decoration: underline; }
+    .faq details p { margin-top: 10px; font-size: 15px; color: #555; line-height: 1.65; }
+    .cta-strip { background: var(--midnight); text-align: center; padding: 64px 40px; }
+    .cta-strip h2 { color: var(--text-on-dark); font-size: clamp(26px, 4vw, 34px); font-weight: 700; margin-bottom: 10px; }
+    .cta-strip p { color: var(--blue-muted); font-size: 16px; margin-bottom: 30px; }
+    .cta-strip .store-badges { margin-bottom: 8px; }
+    .cta-strip .price-note { color: var(--text-muted-dark); font-size: 13px; margin-top: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--midnight-deep);
+      padding: 26px 40px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      border-top: 1px solid var(--blue-border);
+    }
+    footer span { color: var(--blue-mid); font-size: 13px; }
+    footer .foot-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer a { color: var(--sky); font-size: 13px; text-decoration: none; }
+    footer a:hover { color: var(--text-on-dark); }
+
+    /* SCROLL FADE */
+    .scroll-fade { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .scroll-fade.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 780px) {
+      .steps, .why-grid { grid-template-columns: 1fr; gap: 36px; }
+      .why-grid { max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 52px 22px 48px; }
+      .section { padding: 48px 22px; }
+      .cta-strip { padding: 52px 22px; }
+      footer { padding: 22px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/sparkdry/">
+      <img src="/sparkdry-icon.png" alt="SparkDry icon" width="34" height="34" />
+      <span class="nav-name">SparkDry</span>
+    </a>
+    <a class="nav-back" href="https://wrjventures.com/">← WRJ Ventures</a>
+  </nav>
+
+  <section class="hero">
+    <canvas id="star-canvas"></canvas>
+    <div class="hero-badge">Car wash weather · rain, pollen &amp; dust</div>
+    <h1>Don't wash your car<br /><span class="accent">right before it rains.</span></h1>
+    <p class="hero-sub">SparkDry checks your local forecast and gives you one Wash Score, so you know whether today is the day to wash, or whether rain is coming and you should wait.</p>
+
+    <div class="dl">
+      <div class="store-badges" id="storeBadges">
+        <a class="store-badge" data-os="ios" href="https://apps.apple.com/app/id6770072955" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.15-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13z"/></svg>
+          <span class="sb-text"><span class="sb-small">Download on the</span><span class="sb-big">App Store</span></span>
+        </a>
+        <a class="store-badge" data-os="android" href="https://play.google.com/store/apps/details?id=com.wrjventures.sparkdry" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54z"/></svg>
+          <span class="sb-text"><span class="sb-small">Get it on</span><span class="sb-big">Google Play</span></span>
+        </a>
+      </div>
+
+      <div class="qr-block" id="qrBlock">
+        <!-- QR points at this page; scanning on a phone auto-routes to the right store -->
+        <img src="qr.svg" alt="QR code to open SparkDry on your phone" width="76" height="76" style="width:76px;height:76px;background:#fff;padding:6px;border-radius:8px;" />
+        <span class="qr-cap">Scan to get SparkDry on your phone — free.</span>
+      </div>
+    </div>
+
+    <div class="hero-shot">
+      <img src="shots/phone-02-rain-coming.png" alt="SparkDry showing Rain Coming Tomorrow, skip the wash, for San Francisco" width="260" height="496" loading="eager" />
+    </div>
+  </section>
+
+  <div class="section scroll-fade">
+    <div class="section-label">How it works</div>
+    <h2>Know in one glance</h2>
+    <p class="lede">Open the app and your Wash Score is already there, for your exact location. No account needed.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-shot"><img src="shots/phone-01-great-day.png" alt="SparkDry Wash Score of 100: great time to wash, 7 dry days ahead" width="240" height="458" loading="lazy" /></div>
+        <div class="step-num">1</div>
+        <h3>Check your Wash Score</h3>
+        <p>Rain, pollen and dust are combined into one score from 0 to 100. Higher means your wash lasts longer.</p>
+      </div>
+      <div class="step">
+        <div class="step-shot"><img src="shots/phone-02-rain-coming.png" alt="SparkDry warning that rain is coming tomorrow, so skip the wash" width="240" height="458" loading="lazy" /></div>
+        <div class="step-num">2</div>
+        <h3>Skip the wasted wash</h3>
+        <p>Rain on the way? SparkDry tells you to wait, and shows when the weather clears.</p>
+      </div>
+      <div class="step">
+        <div class="step-shot"><img src="shots/phone-03-car-washes.png" alt="Nearby car washes in SparkDry with ratings, distance and directions" width="240" height="458" loading="lazy" /></div>
+        <div class="step-num">3</div>
+        <h3>Find a car wash</h3>
+        <p>When it's a good day, see car washes near you with ratings, distance and one-tap directions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="why scroll-fade">
+    <div class="section">
+      <div class="section-label">Why SparkDry</div>
+      <h2>More than a rain forecast</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="ic">🌧️</span>
+          <h3>Dry streak</h3>
+          <p>See how many dry days are ahead, the number that decides how long your car stays clean.</p>
+        </div>
+        <div class="why-card">
+          <span class="ic">🌼</span>
+          <h3>Pollen &amp; dust too</h3>
+          <p>A dry day with heavy pollen still leaves a film on your paint. SparkDry checks air quality as well as rain.</p>
+        </div>
+        <div class="why-card">
+          <span class="ic">🔔</span>
+          <h3>Alerts when it's time</h3>
+          <p>Turn on notifications and SparkDry tells you when conditions are good for a wash.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section scroll-fade">
+    <div class="section-label">FAQ</div>
+    <h2>When to wash your car: questions</h2>
+    <div class="faq">
+      <details><summary>When is the best time to wash my car?</summary><p>Wash on a dry, mild day when no rain is expected for the next couple of days, and when pollen and dust are low. SparkDry checks your local forecast and turns it into one Wash Score from 0 to 100, so you can see at a glance whether today is a good day.</p></details>
+      <details><summary>Should I wash my car if it&#x27;s going to rain?</summary><p>Usually not. Rain right after a wash leaves water spots and road grime, so the wash is wasted. If rain is likely today or tomorrow, SparkDry tells you to skip the wash and shows when the rain is expected to clear.</p></details>
+      <details><summary>How does the SparkDry Wash Score work?</summary><p>SparkDry reads your local forecast (rain probability and amount over the coming days) plus air quality like pollen and dust, and combines them into a single score. Higher is better. It also counts your dry streak: how many dry days are ahead.</p></details>
+      <details><summary>Is SparkDry free?</summary><p>Yes. Today&#x27;s Wash Score, the dry streak, nearby car washes and push alerts are free, with no account needed. An optional Pro upgrade ($1.99/month or $9.99/year) adds the full 7-day forecast, a custom alert threshold and an ad-free experience.</p></details>
+      <details><summary>Can SparkDry find a car wash near me?</summary><p>Yes. The Car Washes tab lists real car washes near you with ratings, distance, opening hours and one-tap directions.</p></details>
+      <details><summary>Does it work on iPhone, iPad and Android?</summary><p>Yes. SparkDry is on the App Store for iPhone and iPad, and on Google Play for Android.</p></details>
+    </div>
+  </div>
+
+  <section class="cta-strip scroll-fade">
+    <h2>Make your next wash last</h2>
+    <p>Free to download. No account needed.</p>
+    <div class="store-badges" id="storeBadges2">
+        <a class="store-badge" data-os="ios" href="https://apps.apple.com/app/id6770072955" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.15-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13z"/></svg>
+          <span class="sb-text"><span class="sb-small">Download on the</span><span class="sb-big">App Store</span></span>
+        </a>
+        <a class="store-badge" data-os="android" href="https://play.google.com/store/apps/details?id=com.wrjventures.sparkdry" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54z"/></svg>
+          <span class="sb-text"><span class="sb-small">Get it on</span><span class="sb-big">Google Play</span></span>
+        </a>
+      </div>
+    <p class="price-note">iPhone &amp; iPad · Android</p>
+  </section>
+
+  <footer>
+    <span>© 2026 WRJ Ventures LLC</span>
+    <div class="foot-links">
+      <a href="https://sparkdryapp.com/">Use SparkDry on the web</a>
+      <a href="https://sparkdryapp.com/privacy.html">App privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="https://wrjventures.com/">WRJ Ventures</a>
+    </div>
+    <p class="site-note">About this page: wrjventures.com uses Google Analytics to count visits, see which link brought you here (for example, a TikTok post) and count taps on the store buttons. It may set cookies and collect your approximate location, browser and device type. It isn't used for advertising, and Google signals and ad personalization are off. Analytics cookies are off by default in the EEA, the UK and Switzerland. You can opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's opt-out add-on</a>. The SparkDry app does not use Google Analytics.</p>
+  </footer>
+
+  <script>
+    // GA4 key event: one `store_click` per store-button tap (marked as a key event in GA).
+    // platform = ios | android; placement = hero | bottom. Beacon transport survives the new tab.
+    document.querySelectorAll('.store-badge').forEach(function (a) {
+      a.addEventListener('click', function () {
+        if (typeof gtag !== 'function') return;
+        gtag('event', 'store_click', {
+          platform: a.dataset.os,
+          placement: a.closest('.hero') ? 'hero' : 'bottom',
+          transport_type: 'beacon'
+        });
+      });
+    });
+
+    // Source attribution: carry ?src= (or ?utm_source=) into the store links so each
+    // store's own analytics credits the channel. No cookies, no third-party script.
+    //   App Store -> ASC Analytics > Acquisition > Campaigns (ct=; shows once >=5 accounts install)
+    //   Play      -> Play Console > Store listing acquisition, UTM-tagged (referrer=)
+    // Untagged visits are tagged "website" so they still separate from store search.
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var src = (q.get('src') || q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || 'website';
+      var ios = 'https://apps.apple.com/app/apple-store/id6770072955?pt=128914542&ct=' + src + '&mt=8';
+      var play = 'https://play.google.com/store/apps/details?id=com.wrjventures.sparkdry&referrer=' +
+        encodeURIComponent('utm_source=' + src + '&utm_medium=landing_page&utm_campaign=' + src);
+      document.querySelectorAll('.store-badge[data-os="ios"]').forEach(function (a) { a.href = ios; });
+      document.querySelectorAll('.store-badge[data-os="android"]').forEach(function (a) { a.href = play; });
+    })();
+
+    // Platform-aware store emphasis + desktop QR
+    (function () {
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/.test(ua);   // check first: the iPad test below also matches some Android emulators
+      var isIOS = !isAndroid && (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+      var os = isIOS ? 'ios' : (isAndroid ? 'android' : 'desktop');
+
+      document.querySelectorAll('.store-badges').forEach(function (group) {
+        if (os === 'desktop') return; // desktop: leave both equal
+        group.querySelectorAll('.store-badge').forEach(function (b) {
+          b.classList.add(b.dataset.os === os ? 'primary' : 'secondary');
+        });
+        // put the matching store first
+        var match = group.querySelector('.store-badge[data-os="' + os + '"]');
+        if (match) group.insertBefore(match, group.firstChild);
+      });
+
+      if (os === 'desktop') {
+        var qr = document.getElementById('qrBlock');
+        if (qr) qr.classList.add('show');
+      }
+    })();
+
+    // Scroll fade-in
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.scroll-fade').forEach(function (el) { observer.observe(el); });
+
+    // Starfield in hero
+    var canvas = document.getElementById('star-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = canvas.parentElement;
+    function resize() { canvas.width = hero.offsetWidth; canvas.height = hero.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    var stars = Array.from({ length: 70 }, function () {
+      return { x: Math.random(), y: Math.random(), r: Math.random() * 1.2 + 0.3, speed: Math.random() * 0.003 + 0.001, phase: Math.random() * Math.PI * 2 };
+    });
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(function (s) {
+        var a = 0.3 + 0.5 * Math.abs(Math.sin(t * s.speed + s.phase));
+        ctx.beginPath();
+        ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(181, 212, 244, ' + a + ')';
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>

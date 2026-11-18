@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Google Analytics 4 (G-ZG3ZSY4N5Y): website only, never the apps. No ad features.
+       EEA/UK/CH default to analytics consent DENIED (no cookies there; we have no banner). -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZG3ZSY4N5Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted' });
+    gtag('consent', 'default', { analytics_storage: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    // GA4 reads utm_* from the URL; map our short ?src=<tag> onto utm_source so channels line up.
+    var gaCfg = { allow_google_signals: false, allow_ad_personalization_signals: false };
+    var gaQ = new URLSearchParams(location.search), gaSrc = gaQ.get('src');
+    if (gaSrc && !gaQ.get('utm_source')) {
+      gaQ.set('utm_source', gaSrc); gaQ.set('utm_medium', 'social'); gaQ.set('utm_campaign', gaSrc);
+      gaCfg.page_location = location.origin + location.pathname + '?' + gaQ.toString();
+    }
+    gtag('config', 'G-ZG3ZSY4N5Y', gaCfg);
+  </script>
+  <title>WRJ Ventures apps: SnapPaint, SparkDry, NeckTune</title>
+  <meta name="description" content="Get the WRJ Ventures apps: SnapPaint, SparkDry and NeckTune." />
+  <!-- Link-in-bio hub: kept out of search so it never competes with the real app pages. -->
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#1A2744" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=1" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=1" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wrjventures.com/links/" />
+  <meta property="og:title" content="WRJ Ventures apps" />
+  <meta property="og:description" content="SnapPaint, SparkDry and NeckTune. Free on iPhone and Android." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --midnight: #1A2744;
+      --midnight-deep: #111c33;
+      --card: #22325a;
+      --card-border: #2f4372;
+      --haze: #E6F1FB;
+      --muted: #9fbfe3;
+      --ember: #FAC775;
+      --ember-dark: #412402;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--midnight-deep);
+      color: var(--haze);
+      min-height: 100vh;
+      padding: max(20px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom));
+    }
+    .wrap { max-width: 460px; margin: 0 auto; }
+
+    header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    header img { width: 28px; height: 28px; border-radius: 7px; }
+    header span { font-size: 15px; font-weight: 500; color: var(--muted); }
+
+    .apps { display: flex; flex-direction: column; gap: 12px; }
+
+    .app {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .app.pinned { border-color: var(--ember); box-shadow: 0 0 0 1px var(--ember) inset; }
+    .app-top { display: flex; align-items: center; gap: 12px; }
+    .app-top img { width: 56px; height: 56px; border-radius: 13px; flex: none; }
+    .app-name { font-size: 19px; font-weight: 700; line-height: 1.2; }
+    .app-pitch { font-size: 14px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+    .pin-tag {
+      display: none; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--ember-dark); background: var(--ember); border-radius: 999px; padding: 2px 8px; margin-left: 6px;
+      vertical-align: 2px;
+    }
+    .app.pinned .pin-tag { display: inline-block; }
+
+    .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .store-badge {
+      flex: 1 1 0; min-width: 140px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 8px 14px; border-radius: 12px;
+      background: var(--haze); color: var(--midnight-deep); text-decoration: none;
+    }
+    .store-badge svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+    .sb-text { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+    .sb-small { font-size: 11px; }
+    .sb-big { font-size: 17px; font-weight: 700; }
+    .app.pinned .store-badge { background: var(--ember); color: var(--ember-dark); }
+    .store-badge.hide { display: none; }
+    .ios-only { display: none; font-size: 13px; color: var(--muted); margin-top: 10px; }
+    .ios-only.show { display: block; }
+
+    .more { display: inline-block; margin-top: 10px; font-size: 14px; color: var(--muted); text-decoration: none; }
+    .more:hover, .more:focus { color: var(--haze); text-decoration: underline; }
+
+    footer { margin-top: 22px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+    footer .links { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 8px; }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="/apple-touch-icon.png" alt="" />
+      <span>Apps by WRJ Ventures</span>
+    </header>
+
+    <main class="apps" id="apps">
+      <!-- data-app: key used by ?app= and the PINNED setting below. Order here = default order. -->
+      <section class="app" data-app="sparkdry"
+               data-ios-id="6770072955" data-play-id="com.wrjventures.sparkdry" data-page="/sparkdry/">
+        <div class="app-top">
+          <img src="/sparkdry-icon.png" alt="SparkDry app icon" width="56" height="56" />
+          <div>
+            <h2 class="app-name">SparkDry<span class="pin-tag">Featured</span></h2>
+            <p class="app-pitch">Know the best day to wash your car.</p>
+          </div>
+        </div>
+        <div class="actions"></div>
+        <a class="more" href="/sparkdry/">See screenshots →</a>
+      </section>
+
+      <section class="app" data-app="snappaint"
+               data-ios-id="6790002034" data-play-id="com.wrjventures.snappaint" data-page="/snappaint/">
+        <div class="app-top">
+          <img src="/snappaint-icon.png" alt="SnapPaint app icon" width="56" height="56" />
+          <div>
+            <h2 class="app-name">SnapPaint<span class="pin-tag">Featured</span></h2>
+            <p class="app-pitch">Turn your photos into paint-by-number.</p>
+          </div>
+        </div>
+        <div class="actions"></div>
+        <a class="more" href="/snappaint/">See screenshots →</a>
+      </section>
+
+      <section class="app" data-app="necktune" data-ios-id="6774419600">
+        <div class="app-top">
+          <img src="/necktune-icon.png" alt="NeckTune app icon" width="56" height="56" />
+          <div>
+            <h2 class="app-name">NeckTune<span class="pin-tag">Featured</span></h2>
+            <p class="app-pitch">A fast, accurate guitar tuner.</p>
+          </div>
+        </div>
+        <div class="actions"></div>
+        <p class="ios-only">iPhone &amp; iPad only for now.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="links">
+        <a href="/">WRJ Ventures</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:info@wrjventures.com">info@wrjventures.com</a>
+      </div>
+      <p>This page uses Google Analytics to count visits, see which link brought you here and count taps on the store buttons. It isn't used for advertising. Analytics cookies are off by default in the EEA, the UK and Switzerland. Opt out with <a href="https://tools.google.com/dlpage/gaoptout">Google's add-on</a>.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      // ✏️ PINNED: the app shown first and highlighted. Change it to match your latest video.
+      // A link can override it: /links/?src=tiktok&app=snappaint
+      var PINNED = 'sparkdry';
+
+      var PT = '128914542'; // Apple provider token (same for every WRJ app)
+      var APPLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.9-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.03 2.29-1.27 3.15-2.53.99-1.45 1.4-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13z"/></svg>';
+      var PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54z"/></svg>';
+
+      var q = new URLSearchParams(location.search);
+      // Same rule as the app pages: ?src= (or ?utm_source=), cleaned; untagged = "links".
+      var src = (q.get('src') || q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || 'links';
+      var pin = (q.get('app') || PINNED).toLowerCase();
+
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/.test(ua);   // check first: the iPad test below also matches some Android emulators
+      var isIOS = !isAndroid && (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+      var os = isIOS ? 'ios' : (isAndroid ? 'android' : 'desktop');
+
+      function badge(osKey, href, app) {
+        var a = document.createElement('a');
+        a.className = 'store-badge';
+        a.dataset.os = osKey;
+        a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.innerHTML = osKey === 'ios'
+          ? APPLE + '<span class="sb-text"><span class="sb-small">Download on the</span><span class="sb-big">App Store</span></span>'
+          : PLAY + '<span class="sb-text"><span class="sb-small">Get it on</span><span class="sb-big">Google Play</span></span>';
+        a.addEventListener('click', function () {
+          if (typeof gtag !== 'function') return;
+          gtag('event', 'store_click', { app: app, platform: osKey, placement: 'links', transport_type: 'beacon' });
+        });
+        return a;
+      }
+
+      var list = document.getElementById('apps');
+      list.querySelectorAll('.app').forEach(function (card) {
+        var app = card.dataset.app, iosId = card.dataset.iosId, playId = card.dataset.playId;
+        var actions = card.querySelector('.actions');
+        var ios = iosId && ('https://apps.apple.com/app/apple-store/id' + iosId + '?pt=' + PT + '&ct=' + src + '&mt=8');
+        var play = playId && ('https://play.google.com/store/apps/details?id=' + playId + '&referrer=' +
+          encodeURIComponent('utm_source=' + src + '&utm_medium=links_page&utm_campaign=' + src));
+
+        // Phones get only their own store; desktop sees both.
+        if (ios && os !== 'android') actions.appendChild(badge('ios', ios, app));
+        if (play && os !== 'ios') actions.appendChild(badge('android', play, app));
+        if (!play && os === 'android') {
+          card.querySelector('.ios-only').classList.add('show');
+          actions.appendChild(badge('ios', ios, app));   // still offer it; some people share with an iPhone
+        }
+
+        // Carry the tag into the full app page so its store buttons credit the same channel.
+        var more = card.querySelector('.more');
+        if (more) {
+          more.href = card.dataset.page + '?src=' + encodeURIComponent(src);
+          more.addEventListener('click', function () {
+            if (typeof gtag === 'function') gtag('event', 'app_page_click', { app: app, transport_type: 'beacon' });
+          });
+        }
+
+        if (app === pin) { card.classList.add('pinned'); list.insertBefore(card, list.firstChild); }
+      });
+    })();
+  </script>
+</body>
+</html>

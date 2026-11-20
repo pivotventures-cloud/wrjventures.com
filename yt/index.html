@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>WRJ Ventures apps</title>
+  <!-- Short link for the youtube channel links: forwards to /links/ tagged src=youtube, keeping any extra params (e.g. ?app=). No analytics here; /links/ counts the visit. -->
+  <meta http-equiv="refresh" content="0; url=/links/?src=youtube" />
+  <script>
+    var q = new URLSearchParams(location.search); q.set('src', 'youtube');
+    location.replace('/links/?' + q.toString());
+  </script>
+</head>
+<body style="font-family:sans-serif;padding:20px"><a href="/links/?src=youtube">Continue to WRJ Ventures apps</a></body>
+</html>
